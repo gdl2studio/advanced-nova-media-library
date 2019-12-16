@@ -2,11 +2,11 @@
 
 namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
+use Illuminate\Support\Collection;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\MediaLibrary\Filesystem\Filesystem;
-use Spatie\MediaLibrary\Helpers\TemporaryDirectory;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Illuminate\Support\Collection;
+use Spatie\MediaLibrary\Helpers\TemporaryDirectory;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -37,7 +37,7 @@ trait HandlesExistingMediaTrait
                 app(Filesystem::class)->copyFromMediaLibrary($existingMedia, $temporaryFile);
                 $media = $model->addMedia($temporaryFile)->withCustomProperties($this->customProperties);
 
-                if($this->responsive) {
+                if ($this->responsive) {
                     $media->withResponsiveImages();
                 }
 

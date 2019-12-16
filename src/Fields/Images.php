@@ -15,7 +15,9 @@ class Images extends Media
 
     /**
      * Do we deprecate this for SingleMediaRules?
+     *
      * @param $singleImageRules
+     *
      * @return Images
      */
     public function singleImageRules($singleImageRules): self

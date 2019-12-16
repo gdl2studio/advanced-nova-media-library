@@ -15,6 +15,7 @@ class MediaRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,8 +25,8 @@ class MediaRequest extends FormRequest
     {
         return [
             'search_text' => 'sometimes|nullable|string',
-            'page' => 'sometimes|nullable|numeric',
-            'per_page' => 'sometimes|nullable|numeric'
+            'page'        => 'sometimes|nullable|numeric',
+            'per_page'    => 'sometimes|nullable|numeric',
         ];
     }
 }

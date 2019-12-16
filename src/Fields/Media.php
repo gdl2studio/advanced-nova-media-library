@@ -4,16 +4,18 @@ namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Illuminate\Support\Facades\Validator;
 
 class Media extends Field
 {
-    use HandlesCustomPropertiesTrait, HandlesConversionsTrait, HandlesExistingMediaTrait;
+    use HandlesCustomPropertiesTrait;
+    use HandlesConversionsTrait;
+    use HandlesExistingMediaTrait;
 
     public $component = 'advanced-media-library-field';
 
@@ -65,9 +67,9 @@ class Media extends Field
     }
 
     /**
-     * Set the responsive mode, which enables the creation of responsive images on upload
+     * Set the responsive mode, which enables the creation of responsive images on upload.
      *
-     * @param boolean $responsive
+     * @param bool $responsive
      *
      * @return $this
      */
@@ -79,7 +81,7 @@ class Media extends Field
     }
 
     /**
-     * Set a filename callable callback
+     * Set a filename callable callback.
      *
      * @param callable $callback
      *
@@ -93,7 +95,7 @@ class Media extends Field
     }
 
     /**
-     * Set a name callable callback
+     * Set a name callable callback.
      *
      * @param callable $callback
      *
@@ -114,7 +116,7 @@ class Media extends Field
         $attr = $request['__media__'] ?? [];
         $data = $attr[$requestAttribute] ?? [];
 
-        if ($attribute === 'ComputedField') {
+        if ('ComputedField' === $attribute) {
             $attribute = call_user_func($this->computedCallback, $model);
         }
 
@@ -128,7 +130,7 @@ class Media extends Field
                 ]);
 
                 Validator::make($requestToValidateSingleMedia, [
-                    $requestAttribute => array_merge($this->defaultValidatorRules, (array)$this->singleMediaRules),
+                    $requestAttribute => array_merge($this->defaultValidatorRules, (array) $this->singleMediaRules),
                 ])->validate();
             });
 
@@ -169,11 +171,11 @@ class Media extends Field
             })->map(function (UploadedFile $file, int $index) use ($request, $model, $collection) {
                 $media = $model->addMedia($file)->withCustomProperties($this->customProperties);
 
-                if($this->responsive) {
+                if ($this->responsive) {
                     $media->withResponsiveImages();
                 }
 
-                if(!empty($this->customHeaders)) {
+                if (!empty($this->customHeaders)) {
                     $media->addCustomHeaders($this->customHeaders);
                 }
 
@@ -218,17 +220,17 @@ class Media extends Field
 
     /**
      * @param HasMedia|HasMediaTrait $resource
-     * @param null $attribute
+     * @param null                   $attribute
      */
     public function resolve($resource, $attribute = null)
     {
         $collectionName = $attribute ?? $this->attribute;
 
-        if ($collectionName === 'ComputedField') {
+        if ('ComputedField' === $collectionName) {
             $collectionName = call_user_func($this->computedCallback, $resource);
         }
 
-		$this->value = $resource->getMedia($collectionName)
+        $this->value = $resource->getMedia($collectionName)
             ->map(function (\Spatie\MediaLibrary\Models\Media $media) {
                 return array_merge($this->serializeMedia($media), ['__media_urls__' => $this->getConversionUrls($media)]);
             });

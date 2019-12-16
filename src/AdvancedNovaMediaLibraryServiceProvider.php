@@ -3,16 +3,16 @@
 namespace Ebess\AdvancedNovaMediaLibrary;
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 
 class AdvancedNovaMediaLibraryServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/nova-media-library.php' => config_path('nova-media-library.php'),
+            __DIR__.'/config/nova-media-library.php' => config_path('nova-media-library.php'),
         ], 'nova-media-library');
 
         $this->app->booted(function () {
