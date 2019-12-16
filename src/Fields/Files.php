@@ -3,9 +3,7 @@
 namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
 /**
- * Class Files
- *
- * @package Ebess\AdvancedNovaMediaLibrary\Fields
+ * Class Files.
  */
 class Files extends Images
 {

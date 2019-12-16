@@ -29,8 +29,8 @@ class MediaController extends Controller
 
             if ($searchText) {
                 $query->where(function ($query) use ($searchText) {
-                    $query->where('name', 'LIKE', '%' . $searchText . '%');
-                    $query->orWhere('file_name', 'LIKE', '%' . $searchText . '%');
+                    $query->where('name', 'LIKE', '%'.$searchText.'%');
+                    $query->orWhere('file_name', 'LIKE', '%'.$searchText.'%');
                 });
             }
 

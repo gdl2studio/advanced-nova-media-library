@@ -12,12 +12,13 @@ class MediaResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
     {
-        /**
+        /*
          * This is incompatible with following settings on the Field.
          * - conversionOnIndexView
          * - conversionOnDetailView

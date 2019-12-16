@@ -32,10 +32,10 @@ trait HandlesConversionsTrait
         return [
             // original needed several purposes like cropping
             '__original__' => $media->getFullUrl(),
-            'indexView' => $media->getFullUrl($this->meta['conversionOnIndexView'] ?? ''),
-            'detailView' => $media->getFullUrl($this->meta['conversionOnDetailView'] ?? ''),
-            'form' => $media->getFullUrl($this->meta['conversionOnForm'] ?? ''),
-            'preview' => $media->getFullUrl($this->meta['conversionOnPreview'] ?? ''),
+            'indexView'    => $media->getFullUrl($this->meta['conversionOnIndexView'] ?? ''),
+            'detailView'   => $media->getFullUrl($this->meta['conversionOnDetailView'] ?? ''),
+            'form'         => $media->getFullUrl($this->meta['conversionOnForm'] ?? ''),
+            'preview'      => $media->getFullUrl($this->meta['conversionOnPreview'] ?? ''),
         ];
     }
 }
