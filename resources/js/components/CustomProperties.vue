@@ -2,69 +2,80 @@
     <portal to="modals">
         <transition name="fade">
             <CustomPropertiesModal
-                :fields="filledFields"
-                @close="handleClose"
-                @update="handleUpdate"
+                    :fields="filledFields"
+                    @close="handleClose"
+                    @update="handleUpdate"
             />
         </transition>
     </portal>
 </template>
 
+
 <script>
-    import CustomPropertiesModal from './CustomPropertiesModal'
+	import CustomPropertiesModal from './CustomPropertiesModal'
 
-    export default {
-        props: {
-            value: {
-                type: Object,
-                required: true,
-            },
-            fields: {
-                type: Array,
-                required: true,
-            },
-        },
+	export default {
+		props: {
+			value: {
+				type: Object,
+				required: true,
+			},
+			fields: {
+				type: Array,
+				required: true,
+			},
+		},
 
-        components: {
-            CustomPropertiesModal,
-        },
+		components: {
+			CustomPropertiesModal,
+		},
 
-        data () {
-            return {
-                image: _.cloneDeep(this.value),
-            }
-        },
+		data() {
+			return {
+				image: _.cloneDeep(this.value),
+			}
+		},
 
-        computed: {
-            filledFields () {
-                return _.cloneDeep(this.fields).map(field => _.tap(field, field => {
-                    field.value = this.getProperty(field.attribute)
-                }))
-            }
-        },
+		computed: {
+			filledFields() {
+				return _.cloneDeep(this.fields).map(field => _.tap(field, field => {
+					field.value = this.tryToParseAsJSON(this.getProperty(field.attribute))
+				}))
+			}
+		},
 
-        methods: {
-            handleClose () {
-                this.$emit('close')
-            },
+		methods: {
+			handleClose() {
+				this.$emit('close')
+			},
 
-            handleUpdate (formData) {
-                for (let [property, value] of formData.entries()) {
-                    this.setProperty(property, value)
-                }
+			handleUpdate(formData) {
+				for (let [property, value] of formData.entries()) {
+					this.setProperty(property, value)
+				}
 
-                this.$emit('input', this.image)
+				this.$emit('input', this.image)
 
-                this.handleClose()
-            },
+				this.handleClose()
+			},
 
-            getProperty (property) {
-                return _.get(this.image, `custom_properties.${property}`)
-            },
+			getProperty(property) {
+				return _.get(this.image, `custom_properties.${property}`)
+			},
 
-            setProperty (property, value) {
-                _.set(this.image, `custom_properties.${property}`, value)
-            },
-        }
-    }
+			setProperty(property, value) {
+				_.set(this.image, `custom_properties.${property}`, value)
+			},
+
+			tryToParseAsJSON(value) {
+				try {
+					value = ('string' === typeof value) ? JSON.parse(value) : value
+				} catch (e) {
+					// do nothing
+				}
+
+				return value
+			},
+		}
+	}
 </script>
