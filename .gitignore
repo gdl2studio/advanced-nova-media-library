@@ -10,3 +10,4 @@ phpunit.xml
 .php_cs.cache
 Thumbs.db
 /docker-compose.override.yml
+/dist/mix-manifest.json
