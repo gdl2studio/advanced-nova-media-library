@@ -1,6 +1,6 @@
 <template>
   <div v-if="field.type === 'media'">
-    <img v-if="value" :src="imageUrl" style="object-fit: cover;" class="rounded-full w-8 h-8" />
+    <img v-if="value" :src="imageUrl" style="object-fit: cover;" class="rounded w-8 h-8" />
     <span v-else>&mdash;</span>
   </div>
   <div v-else>

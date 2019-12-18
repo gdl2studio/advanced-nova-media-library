@@ -110,6 +110,8 @@ class Media extends Field
 
     /**
      * @param HasMedia $model
+     *
+     * @return \Closure
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {

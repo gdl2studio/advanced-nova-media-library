@@ -12,7 +12,7 @@
 
 <style lang="scss">
   $bg-color: #e8f5fb;
-  $border-radius: 10px;
+  $border-radius: 5px;
 
   .gallery {
     &.editable {
