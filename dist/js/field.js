@@ -669,6 +669,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -688,6 +691,10 @@ __webpack_require__.r(__webpack_exports__);
     field: Object,
     value: Array,
     editable: Boolean,
+    downloadable: {
+      type: Boolean,
+      "default": false
+    },
     multiple: Boolean,
     customProperties: {
       type: Boolean,
@@ -884,6 +891,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -891,7 +899,7 @@ __webpack_require__.r(__webpack_exports__);
     ScissorsIcon: _icons_Scissors__WEBPACK_IMPORTED_MODULE_0__["default"],
     GalleryItem: _GalleryItem__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['image', 'field', 'removable', 'editable', 'isCustomPropertiesEditable'],
+  props: ['image', 'field', 'removable', 'editable', 'downloadable', 'isCustomPropertiesEditable'],
   data: function data() {
     return {
       acceptedMimeTypes: ['image/jpg', 'image/jpeg', 'image/png'],
@@ -938,7 +946,7 @@ __webpack_require__.r(__webpack_exports__);
         this.src = this.image.__media_urls__.__original__;
       }
 
-      if (this.field.showDimensions) {
+      if (this.field.showDimensions || this.field.showRatio) {
         setTimeout(this.calculateDimensions);
       }
     },
@@ -1352,7 +1360,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".gallery.editable .gallery-item {\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n.gallery .gallery-item {\n  float: left;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  position: relative;\n  border-radius: 10px;\n  background-color: #e8f5fb;\n}\n.gallery .gallery-item .gallery-item-info {\n  display: -webkit-box;\n  display: flex;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 10px;\n  z-index: 10;\n}", ""]);
+exports.push([module.i, ".gallery.editable .gallery-item {\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n.gallery .gallery-item {\n  float: left;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  position: relative;\n  border-radius: 5px;\n  background-color: #e8f5fb;\n}\n.gallery .gallery-item .gallery-item-info {\n  display: -webkit-box;\n  display: flex;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  z-index: 10;\n}", ""]);
 
 // exports
 
@@ -1390,7 +1398,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".gallery .gallery-item-image.gallery-item {\n  width: 150px;\n  height: 150px;\n}\n.gallery .gallery-item-image.gallery-item:hover .gallery-item-info {\n  display: -webkit-box;\n  display: flex;\n}\n.gallery .gallery-item-image.gallery-item.show-dimensions {\n  padding-bottom: 24px;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info {\n  display: none;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 10px;\n  position: absolute;\n  z-index: 10;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .preview {\n  color: var(--black);\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .delete {\n  right: 10px;\n  color: var(--danger);\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .crop {\n  left: 10px;\n  top: auto;\n  bottom: 10px;\n}\n.gallery .gallery-item-image.gallery-item .gallery-image {\n  -o-object-fit: contain;\n     object-fit: contain;\n  display: block;\n  max-height: 100%;\n  border-radius: 10px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions,\n.gallery .gallery-item-image.gallery-item .type {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  font-size: 0.75rem;\n  line-height: 0.95;\n  text-align: center;\n}\n.gallery .gallery-item-image.gallery-item .dimensions {\n  bottom: 1px;\n}\n.gallery .gallery-item-image.gallery-item .type {\n  top: 3px;\n}\n.gallery .icon {\n  cursor: pointer;\n  position: absolute;\n  top: 10px;\n  color: var(--info);\n}\n.gallery .edit {\n  right: 30px;\n}\n.gallery .download {\n  left: 10px;\n}", ""]);
+exports.push([module.i, ".gallery .gallery-item-image.gallery-item {\n  width: 150px;\n  height: 150px;\n  /*&.show-dimensions {*/\n  /*  padding-bottom: 24px;*/\n  /*}*/\n}\n.gallery .gallery-item-image.gallery-item:hover .gallery-item-info {\n  display: -webkit-box;\n  display: flex;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info {\n  display: none;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  position: absolute;\n  z-index: 10;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .preview {\n  color: var(--black);\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .crop {\n  left: 10px;\n  top: auto;\n  bottom: 10px;\n}\n.gallery .gallery-item-image.gallery-item .gallery-image {\n  -o-object-fit: contain;\n     object-fit: contain;\n  display: block;\n  max-height: 100%;\n  border-radius: 5px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions, .gallery .gallery-item-image.gallery-item .type {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  font-size: 0.75rem;\n  line-height: 0.95;\n  text-align: center;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  z-index: 5;\n  padding: 4px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions {\n  bottom: 0;\n  padding-right: 0;\n}\n.gallery .gallery-item-image.gallery-item .type {\n  top: 0;\n}\n.gallery .icon {\n  cursor: pointer;\n  position: absolute;\n  top: 10px;\n  color: var(--info);\n}\n.gallery .edit, .gallery .download {\n  left: 10px;\n}\n.gallery .edit + .download {\n  left: 30px !important;\n}\n.gallery .delete {\n  right: 10px;\n  color: var(--danger);\n}", ""]);
 
 // exports
 
@@ -32949,11 +32957,12 @@ var render = function() {
                 return _c(_vm.singleComponent, {
                   key: index,
                   tag: "component",
-                  staticClass: "mb-3 p-3 mr-3",
+                  staticClass: "mb-3 p-2 mr-3",
                   attrs: {
                     image: image,
                     field: _vm.field,
                     editable: _vm.editable,
+                    dowloadable: _vm.downloadable,
                     removable: _vm.editable,
                     "is-custom-properties-editable":
                       _vm.customProperties &&
@@ -33024,7 +33033,7 @@ var render = function() {
       _vm._v(" "),
       _vm.hasError
         ? _c("p", { staticClass: "my-2 text-danger" }, [
-            _vm._v("\n    " + _vm._s(_vm.firstError) + "\n  ")
+            _vm._v("\n        " + _vm._s(_vm.firstError) + "\n    ")
           ])
         : _vm._e()
     ],
@@ -33208,13 +33217,40 @@ var render = function() {
       class: { "show-dimensions": _vm.field.showDimensions }
     },
     [
-      _c("div", { staticClass: "gallery-item-info p-3" }, [
-        _vm.downloadUrl
+      _c("div", { staticClass: "gallery-item-info p-2" }, [
+        _vm.isCustomPropertiesEditable
+          ? _c(
+              "a",
+              {
+                staticClass: "icon edit",
+                attrs: { href: "#", title: _vm.__("Edit custom properties") },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.$emit("edit-custom-properties")
+                  }
+                }
+              },
+              [
+                _c("icon", {
+                  attrs: {
+                    type: "edit",
+                    "view-box": "0 0 20 20",
+                    width: "16",
+                    height: "16"
+                  }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.downloadable && _vm.downloadUrl
           ? _c(
               "a",
               {
                 staticClass: "icon download",
-                attrs: { href: _vm.downloadUrl, title: "Download" }
+                attrs: { href: _vm.downloadUrl, title: _vm.__("Download") }
               },
               [
                 _c("icon", {
@@ -33235,7 +33271,7 @@ var render = function() {
               "a",
               {
                 staticClass: "icon delete",
-                attrs: { href: "#", title: "Remove" },
+                attrs: { href: "#", title: _vm.__("Remove") },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -33247,33 +33283,6 @@ var render = function() {
                 _c("icon", {
                   attrs: {
                     type: "delete",
-                    "view-box": "0 0 20 20",
-                    width: "16",
-                    height: "16"
-                  }
-                })
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isCustomPropertiesEditable
-          ? _c(
-              "a",
-              {
-                staticClass: "icon edit",
-                attrs: { href: "#", title: "Edit custom properties" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.$emit("edit-custom-properties")
-                  }
-                }
-              },
-              [
-                _c("icon", {
-                  attrs: {
-                    type: "edit",
                     "view-box": "0 0 20 20",
                     width: "16",
                     height: "16"
@@ -33343,24 +33352,29 @@ var render = function() {
         attrs: { src: _vm.src, alt: _vm.image.name }
       }),
       _vm._v(" "),
-      _vm.field.showDimensions
+      _vm.field.showDimensions || _vm.field.showRatio
         ? _c("div", { staticClass: "dimensions" }, [
-            _c("strong", [
-              _vm._v(_vm._s(_vm.width) + "×" + _vm._s(_vm.height))
-            ]),
-            _vm._v(" px"),
-            _c("br"),
+            _vm.field.showDimensions
+              ? _c("div", [
+                  _c("strong", [
+                    _vm._v(_vm._s(_vm.width) + "×" + _vm._s(_vm.height))
+                  ]),
+                  _vm._v(" px")
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c("strong", [_vm._v(_vm._s(_vm.acpectRatio))]),
-            _vm._v(" ("),
-            _c("i", [_vm._v(_vm._s(_vm.ratio))]),
-            _vm._v(")\n  ")
+            _vm.field.showRatio
+              ? _c("div", [
+                  _c("strong", [_vm._v(_vm._s(_vm.acpectRatio))]),
+                  _vm._v(" (" + _vm._s(_vm.ratio) + ")")
+                ])
+              : _vm._e()
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.field.showDimensions
+      _vm.field.showMimeType
         ? _c("div", { staticClass: "type" }, [
-            _vm._v("\n    " + _vm._s(_vm.mimeType) + "\n  ")
+            _vm._v("\n        " + _vm._s(_vm.mimeType) + "\n    ")
           ])
         : _vm._e()
     ]
@@ -33531,7 +33545,7 @@ var render = function() {
     ? _c("div", [
         _vm.value
           ? _c("img", {
-              staticClass: "rounded-full w-8 h-8",
+              staticClass: "rounded w-8 h-8",
               staticStyle: { "object-fit": "cover" },
               attrs: { src: _vm.imageUrl }
             })

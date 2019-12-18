@@ -10,7 +10,7 @@ class Images extends Media
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->croppable();
+        $this->croppable(false);
     }
 
     /**
@@ -40,5 +40,15 @@ class Images extends Media
     public function showDimensions(bool $showDimensions = true): self
     {
         return $this->withMeta(compact('showDimensions'));
+    }
+
+    public function showRatio(bool $showRatio = true): self
+    {
+        return $this->withMeta(compact('showRatio'));
+    }
+
+    public function showMimeType(bool $showMimeType = true): self
+    {
+        return $this->withMeta(compact('showMimeType'));
     }
 }
