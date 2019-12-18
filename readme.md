@@ -1,7 +1,7 @@
-# Laravel Advanced Nova Media Library
+# Laravel Advanced Nova Media Library ![StyleCIBadge](https://github.styleci.io/repos/228395247/shield?style=square)
 
 Manage images of [spatie's media library package](https://github.com/spatie/laravel-medialibrary). Upload multiple
-images and order them by drag and drop.
+images and order them by drag and drop. 
 
 ##### Table of Contents  
 * [Examples](#examples)  
