@@ -2,8 +2,12 @@
 
 namespace Ebess\AdvancedNovaMediaLibrary\Fields;
 
+use Ebess\AdvancedNovaMediaLibrary\Traits\RoundedTrait;
+
 class Images extends Media
 {
+    use RoundedTrait;
+
     protected $defaultValidatorRules = ['image'];
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
@@ -50,5 +54,10 @@ class Images extends Media
     public function showMimeType(bool $showMimeType = true): self
     {
         return $this->withMeta(compact('showMimeType'));
+    }
+
+    public function showGalleryOnIndex(int $imagesLimit = 0): self
+    {
+        return $this->withMeta(compact('imagesLimit'));
     }
 }
