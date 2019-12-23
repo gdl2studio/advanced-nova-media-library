@@ -1194,6 +1194,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['resourceName', 'field'],
   computed: {
@@ -1214,6 +1215,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     hasMore: function hasMore() {
       return 0 < this.field.imagesLimit && this.field.imagesLimit < this.field.value.length;
+    },
+    tooltipMaxWidth: function tooltipMaxWidth() {
+      return (this.field.tooltipImagesPerRow ? this.field.tooltipImagesPerRow : 5) * 42;
     }
   }
 });
@@ -1446,7 +1450,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.gallery[data-v-63518a7a] {\n    margin: 3px -10px -10px 0;\n    display: -webkit-box;\n    display: flex;\n    flex-wrap: wrap;\n}\n.gallery img[data-v-63518a7a], .gallery span[data-v-63518a7a] {\n    margin: 0 10px 10px 0;\n}\n.gallery span[data-v-63518a7a] {\n    text-align: center;\n    display: inline-block;\n    line-height: 32px;\n}\n.more[data-v-63518a7a] {\n    background-color: var(--50);\n}\n", ""]);
+exports.push([module.i, "\n.gallery[data-v-63518a7a] {\n    margin: 3px -10px -10px 0;\n    display: -webkit-box;\n    display: flex;\n    flex-wrap: wrap;\n}\n.in-tooltip[data-v-63518a7a] {\n    margin: 4px -10px -6px 0;\n}\n.gallery img[data-v-63518a7a] {\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.gallery img[data-v-63518a7a], .gallery span[data-v-63518a7a] {\n    margin: 0 10px 10px 0;\n}\n.gallery span[data-v-63518a7a] {\n    text-align: center;\n    display: inline-block;\n    line-height: 32px;\n}\n.more[data-v-63518a7a] {\n    background-color: var(--50);\n}\n", ""]);
 
 // exports
 
@@ -33624,12 +33628,11 @@ var render = function() {
         "div",
         { staticClass: "gallery" },
         [
-          _vm.imagesUrls.length
+          _vm.allImagesUrls.length
             ? [
                 _vm._l(_vm.imagesUrls, function(url) {
                   return _c("img", {
                     staticClass: "rounded w-8 h-8",
-                    staticStyle: { "object-fit": "cover" },
                     attrs: { src: url }
                   })
                 }),
@@ -33637,13 +33640,13 @@ var render = function() {
                 _vm.hasMore
                   ? _c(
                       "tooltip",
-                      { attrs: { trigger: "click" } },
+                      { attrs: { trigger: "click", boundary: "body" } },
                       [
                         _c(
                           "span",
                           {
                             staticClass: "more rounded w-8 h-8 cursor-pointer",
-                            attrs: { title: _vm.__("View") }
+                            attrs: { title: _vm.__("View all") }
                           },
                           [_vm._v("…")]
                         ),
@@ -33654,11 +33657,14 @@ var render = function() {
                           [
                             _c(
                               "div",
-                              { staticClass: "gallery" },
-                              _vm._l(_vm.allImagesUrls, function(url) {
+                              {
+                                staticClass: "gallery in-tooltip",
+                                style:
+                                  "max-width: " + _vm.tooltipMaxWidth + "px"
+                              },
+                              _vm._l(_vm.allImagesUrls, function(url, index) {
                                 return _c("img", {
                                   staticClass: "rounded w-8 h-8",
-                                  staticStyle: { "object-fit": "cover" },
                                   attrs: { src: url }
                                 })
                               }),

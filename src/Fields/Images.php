@@ -56,8 +56,8 @@ class Images extends Media
         return $this->withMeta(compact('showMimeType'));
     }
 
-    public function showGalleryOnIndex(int $imagesLimit = 0): self
+    public function showGalleryOnIndex(int $imagesLimit = 5, int $tooltipImagesPerRow = 5): self
     {
-        return $this->withMeta(compact('imagesLimit'));
+        return $this->withMeta(compact('imagesLimit', 'tooltipImagesPerRow'));
     }
 }

@@ -1,15 +1,16 @@
 <template>
     <div v-if="field.type === 'media'" class="gallery">
-        <template v-if="imagesUrls.length">
-            <img v-for="url in imagesUrls" :src="url" style="object-fit: cover;" class="rounded w-8 h-8">
+        <template v-if="allImagesUrls.length">
+            <img v-for="url in imagesUrls" :src="url" class="rounded w-8 h-8">
 
-            <tooltip v-if="hasMore" trigger="click">
-                <span class="more rounded w-8 h-8 cursor-pointer" :title="__('View')">&hellip;</span>
+            <tooltip v-if="hasMore" trigger="click" boundary="body">
+                <span class="more rounded w-8 h-8 cursor-pointer" :title="__('View all')">&hellip;</span>
 
                 <tooltip-content slot="content">
-                    <div class="gallery">
-                        <img v-for="url in allImagesUrls" :src="url" style="object-fit: cover;" class="rounded w-8 h-8">
-                      </div>
+                    <div class="gallery in-tooltip" :style="`max-width: ${tooltipMaxWidth}px`">
+                        <img v-for="(url,index) in allImagesUrls" :src="url"
+                             class="rounded w-8 h-8">
+                    </div>
                 </tooltip-content>
             </tooltip>
 
@@ -26,7 +27,8 @@
 
 <script>
 	export default {
-		props: ['resourceName', 'field'],
+		props:
+			['resourceName', 'field'],
 
 		computed: {
 			value() {
@@ -47,6 +49,10 @@
 
 			hasMore() {
 				return 0 < this.field.imagesLimit && this.field.imagesLimit < this.field.value.length;
+			},
+
+			tooltipMaxWidth() {
+				return (this.field.tooltipImagesPerRow ? this.field.tooltipImagesPerRow : 5) * 42;
 			}
 		},
 	};
@@ -57,6 +63,14 @@
         margin: 3px -10px -10px 0;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .in-tooltip {
+        margin: 4px -10px -6px 0;
+    }
+
+    .gallery img {
+        object-fit: cover;
     }
 
     .gallery img, .gallery span {
