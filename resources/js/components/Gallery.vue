@@ -101,6 +101,12 @@
 				this.images = value;
 			},
 		},
+
+		mounted() {
+			// TODO: przeflancuj kastom propertasy
+			console.log('GALERY MOUNTEEEED!!!');
+		},
+
 		methods: {
 			remove(index) {
 				this.images = this.images.filter((value, i) => i !== index);
