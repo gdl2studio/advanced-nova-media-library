@@ -103,11 +103,20 @@
 		},
 
 		mounted() {
-			// TODO: przeflancuj kastom propertasy
-			console.log('GALERY MOUNTEEEED!!!');
+			this.jsonStringifyCustomPropertiesValues();
 		},
 
 		methods: {
+			jsonStringifyCustomPropertiesValues() {
+				this.images.forEach(image => {
+					_.forOwn(image.custom_properties, (value, property) => {
+						if ('object' === typeof value && null !== value) {
+							image.custom_properties[property] = JSON.stringify(value);
+						}
+					});
+				});
+			},
+
 			remove(index) {
 				this.images = this.images.filter((value, i) => i !== index);
 			},

@@ -633,6 +633,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CustomProperties__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CustomProperties */ "./resources/js/components/CustomProperties.vue");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -735,10 +737,18 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    // TODO: przeflancuj kastom propertasy
-    console.log('GALERY MOUNTEEEED!!!');
+    this.jsonStringifyCustomPropertiesValues();
   },
   methods: {
+    jsonStringifyCustomPropertiesValues: function jsonStringifyCustomPropertiesValues() {
+      this.images.forEach(function (image) {
+        _.forOwn(image.custom_properties, function (value, property) {
+          if ('object' === _typeof(value) && null !== value) {
+            image.custom_properties[property] = JSON.stringify(value);
+          }
+        });
+      });
+    },
     remove: function remove(index) {
       this.images = this.images.filter(function (value, i) {
         return i !== index;
