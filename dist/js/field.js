@@ -674,6 +674,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 //
 //
 //
+//
+//
 
 
 
@@ -1079,6 +1081,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1111,8 +1120,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     /*
-     * Set the initial, internal value for the field.
-     */
+              * Set the initial, internal value for the field.
+              */
     setInitialValue: function setInitialValue() {
       var value = this.field.value || [];
 
@@ -1384,7 +1393,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".gallery.editable .gallery-item {\n  cursor: -webkit-grab;\n  cursor: grab;\n}", ""]);
+exports.push([module.i, ".gallery.editable .gallery-item {\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n.gallery .btn {\n  height: 2rem;\n  font-size: 0.8rem;\n  line-height: 2.2rem;\n  border-radius: 5px;\n}", ""]);
 
 // exports
 
@@ -1441,7 +1450,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".gallery .gallery-item-image.gallery-item {\n  width: 150px;\n  height: 150px;\n  /*&.show-dimensions {*/\n  /*  padding-bottom: 24px;*/\n  /*}*/\n}\n.gallery .gallery-item-image.gallery-item:hover .gallery-item-info {\n  display: -webkit-box;\n  display: flex;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info {\n  display: none;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  position: absolute;\n  z-index: 10;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .preview {\n  color: var(--black);\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .crop {\n  left: 10px;\n  top: auto;\n  bottom: 10px;\n}\n.gallery .gallery-item-image.gallery-item .gallery-image {\n  -o-object-fit: contain;\n     object-fit: contain;\n  display: block;\n  max-height: 100%;\n  border-radius: 5px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions, .gallery .gallery-item-image.gallery-item .type {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  font-size: 0.75rem;\n  line-height: 0.95;\n  text-align: center;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  z-index: 5;\n  padding: 4px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions {\n  bottom: 0;\n  padding-right: 0;\n}\n.gallery .gallery-item-image.gallery-item .type {\n  top: 0;\n}\n.gallery .icon {\n  cursor: pointer;\n  position: absolute;\n  top: 10px;\n  color: var(--info);\n}\n.gallery .edit, .gallery .download {\n  left: 10px;\n}\n.gallery .edit + .download {\n  left: 30px !important;\n}\n.gallery .delete {\n  right: 10px;\n  color: var(--danger);\n}", ""]);
+exports.push([module.i, ".gallery .gallery-item-image.gallery-item {\n  width: 150px;\n  height: 150px;\n}\n.gallery .gallery-item-image.gallery-item:hover .gallery-item-info {\n  display: -webkit-box;\n  display: flex;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info {\n  display: none;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  position: absolute;\n  z-index: 10;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .preview {\n  color: var(--black);\n}\n.gallery .gallery-item-image.gallery-item .gallery-item-info .crop {\n  left: 10px;\n  top: auto;\n  bottom: 10px;\n}\n.gallery .gallery-item-image.gallery-item .gallery-image {\n  -o-object-fit: contain;\n     object-fit: contain;\n  display: block;\n  max-height: 100%;\n  border-radius: 5px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions, .gallery .gallery-item-image.gallery-item .type {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  font-size: 0.75rem;\n  line-height: 0.95;\n  text-align: center;\n  background-color: rgba(232, 245, 251, 0.8);\n  border-radius: 5px;\n  z-index: 5;\n  padding: 4px;\n}\n.gallery .gallery-item-image.gallery-item .dimensions {\n  bottom: 0;\n  padding-right: 0;\n}\n.gallery .gallery-item-image.gallery-item .type {\n  top: 0;\n}\n.gallery .icon {\n  cursor: pointer;\n  position: absolute;\n  top: 10px;\n  color: var(--info);\n}\n.gallery .edit, .gallery .download {\n  left: 10px;\n}\n.gallery .edit + .download {\n  left: 30px !important;\n}\n.gallery .delete {\n  right: 10px;\n  color: var(--danger);\n}", ""]);
 
 // exports
 
@@ -33103,24 +33112,31 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.editable
-        ? _c("span", { staticClass: "form-file" }, [
-            _c("input", {
-              ref: "file",
-              staticClass: "form-file-input",
-              attrs: {
-                id: "__media__" + _vm.field.attribute,
-                multiple: _vm.multiple,
-                type: "file"
-              },
-              on: { change: _vm.add }
-            }),
-            _vm._v(" "),
-            _c("label", {
-              staticClass: "form-file-btn btn btn-default btn-primary",
-              attrs: { for: "__media__" + _vm.field.attribute },
-              domProps: { textContent: _vm._s(_vm.label) }
-            })
-          ])
+        ? _c(
+            "span",
+            { staticClass: "form-file" },
+            [
+              _c("input", {
+                ref: "file",
+                staticClass: "form-file-input",
+                attrs: {
+                  id: "__media__" + _vm.field.attribute,
+                  multiple: _vm.multiple,
+                  type: "file"
+                },
+                on: { change: _vm.add }
+              }),
+              _vm._v(" "),
+              _c("label", {
+                staticClass: "form-file-btn btn btn-default btn-primary",
+                attrs: { for: "__media__" + _vm.field.attribute },
+                domProps: { textContent: _vm._s(_vm.label) }
+              }),
+              _vm._v(" "),
+              _vm._t("existing-media")
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.hasError
@@ -33543,53 +33559,62 @@ var render = function() {
           { class: { "px-8 pt-6": _vm.field.fullSize } },
           [
             _vm.hasSetInitialValue
-              ? _c("gallery", {
-                  ref: "gallery",
-                  attrs: {
-                    slot: "value",
-                    editable: "",
-                    "custom-properties": "",
-                    field: _vm.field,
-                    multiple: _vm.field.multiple,
-                    "has-error": _vm.hasError,
-                    "first-error": _vm.firstError
-                  },
-                  slot: "value",
-                  model: {
-                    value: _vm.value,
-                    callback: function($$v) {
-                      _vm.value = $$v
+              ? _c(
+                  "gallery",
+                  {
+                    ref: "gallery",
+                    attrs: {
+                      slot: "value",
+                      editable: "",
+                      "custom-properties": "",
+                      field: _vm.field,
+                      multiple: _vm.field.multiple,
+                      "has-error": _vm.hasError,
+                      "first-error": _vm.firstError
                     },
-                    expression: "value"
-                  }
-                })
+                    slot: "value",
+                    model: {
+                      value: _vm.value,
+                      callback: function($$v) {
+                        _vm.value = $$v
+                      },
+                      expression: "value"
+                    }
+                  },
+                  [
+                    _vm.field.existingMedia
+                      ? _c("template", { slot: "existing-media" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "form-file-btn btn btn-default btn-primary mt-2 ml-2",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.existingMediaOpen = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.openExistingMediaLabel) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ])
+                      : _vm._e()
+                  ],
+                  2
+                )
               : _vm._e(),
             _vm._v(" "),
             _vm.field.existingMedia
               ? _c(
                   "div",
                   [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "form-file-btn btn btn-default btn-primary mt-2",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.existingMediaOpen = true
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n          " +
-                            _vm._s(_vm.openExistingMediaLabel) +
-                            "\n        "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
                     _c("existing-media", {
                       attrs: { open: _vm.existingMediaOpen },
                       on: {
