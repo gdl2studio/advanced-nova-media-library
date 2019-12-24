@@ -149,10 +149,6 @@
                 display: flex;
             }
 
-            /*&.show-dimensions {*/
-            /*  padding-bottom: 24px;*/
-            /*}*/
-
             .gallery-item-info {
                 display: none;
                 align-items: center;

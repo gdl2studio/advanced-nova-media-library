@@ -26,10 +26,12 @@
         <span v-else-if="!editable" class="mr-3">&mdash;</span>
 
         <span v-if="editable" class="form-file">
-      <input :id="`__media__${field.attribute}`" :multiple="multiple" ref="file" class="form-file-input" type="file"
+            <input :id="`__media__${field.attribute}`" :multiple="multiple" ref="file" class="form-file-input" type="file"
              @change="add"/>
-      <label :for="`__media__${field.attribute}`" class="form-file-btn btn btn-default btn-primary" v-text="label"/>
-    </span>
+            <label :for="`__media__${field.attribute}`" class="form-file-btn btn btn-default btn-primary" v-text="label"/>
+
+            <slot name="existing-media"></slot>
+        </span>
 
         <p v-if="hasError" class="my-2 text-danger">
             {{ firstError }}
@@ -164,6 +166,13 @@
             .gallery-item {
                 cursor: grab;
             }
+        }
+
+        .btn {
+            height: 2rem;
+            font-size: 0.8rem;
+            line-height: 2.2rem;
+            border-radius: 5px;
         }
     }
 </style>
